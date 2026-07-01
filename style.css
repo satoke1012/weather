@@ -44,9 +44,13 @@ html,body{
 
 .clock{
     grid-area: clock;
-    text-align:center;
-}
 
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    width:100%;
+}
 .weather{
     grid-area: weather;
     display:flex;
@@ -164,8 +168,10 @@ footer{
 .logo{
     height:80px;
     width:auto;
+    margin-right:30px;
 }
 
 .clock-area{
     text-align:right;
+    margin-left:auto;
 }
