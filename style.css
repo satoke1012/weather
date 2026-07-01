@@ -44,7 +44,7 @@ html,body{
 
 header{
     grid-area: clock;
-    text-align:center;
+    text-align:left; 
 }
 
 .weather{
