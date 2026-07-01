@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太田市 天気サイネージ</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ヘッダー -->
+    <header>
+        <h1>群馬県 太田市</h1>
+        <h2>今日の天気</h2>
+    </header>
+
+    <!-- 日付・時計 -->
+    <section class="datetime">
+
+        <div id="date">
+            ----年--月--日（-）
+        </div>
+
+        <div id="clock">
+            --:--:--
+        </div>
+
+    </section>
+
+    <!-- 天気 -->
+    <section class="weather">
+
+        <div class="weather-icon" id="weatherIcon">
+            ☀️
+        </div>
+
+        <div class="weather-text" id="weatherText">
+            読み込み中...
+        </div>
+
+    </section>
+
+    <!-- 気温 -->
+    <section class="temperature">
+
+        <div class="temp-box">
+
+            <div class="label">
+                最高気温
+            </div>
+
+            <div class="value" id="maxTemp">
+                --
+            </div>
+
+        </div>
+
+        <div class="temp-box">
+
+            <div class="label">
+                最低気温
+            </div>
+
+            <div class="value" id="minTemp">
+                --
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- 降水確率 -->
+    <section class="rain">
+
+        <h3>降水確率</h3>
+
+        <table>
+
+            <tr>
+                <th>00-06</th>
+                <th>06-12</th>
+                <th>12-18</th>
+                <th>18-24</th>
+            </tr>
+
+            <tr>
+
+                <td id="rain0">--%</td>
+
+                <td id="rain6">--%</td>
+
+                <td id="rain12">--%</td>
+
+                <td id="rain18">--%</td>
+
+            </tr>
+
+        </table>
+
+    </section>
+
+    <!-- 更新時刻 -->
+    <footer>
+
+        <div id="updateTime">
+
+            気象庁データ取得中...
+
+        </div>
+
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
