@@ -147,3 +147,11 @@ footer{
     font-size:18px;
     opacity:0.8;
 }
+.location{
+    font-size:42px;
+    font-weight:bold;
+    margin-bottom:10px;
+    letter-spacing:2px;
+    text-align:center;
+    opacity:0.9;
+}
