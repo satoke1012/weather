@@ -168,7 +168,21 @@ header h2{
 .rain td{
     background:rgba(255,255,255,0.1);
 }
+.rain-simple{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    margin-top:10px;
+    padding:10px;
+    background:rgba(255,255,255,0.1);
+    border-radius:12px;
+}
 
+.rain-simple div{
+    font-size:32px;
+    font-weight:bold;
+    text-align:center;
+}
 /* =========================
    フッター
 ========================= */
