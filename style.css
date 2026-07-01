@@ -1,6 +1,6 @@
-/* =========================
-   全体リセット
-========================= */
+/* =====================================
+   リセット
+===================================== */
 
 *{
     margin:0;
@@ -12,166 +12,219 @@ html,body{
     width:100%;
     height:100%;
     overflow:hidden;
+
     font-family:"Yu Gothic UI","Meiryo",sans-serif;
-    background:linear-gradient(135deg,#0d47a1,#1565c0,#0a2a6b);
+
+    background:linear-gradient(135deg,#1565C0,#0D47A1);
+
     color:#fff;
 }
 
-/* =========================
-   全体レイアウト（横サイネージ）
-========================= */
+/* =====================================
+   全体
+===================================== */
 
 .container{
+
     width:100%;
     height:100%;
 
     display:grid;
 
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 140px 1fr;
+    grid-template-columns:60% 40%;
 
-    grid-template-areas:
-        "clock clock"
-        "weather rain";
-
-    gap:30px;
-    padding:50px;
 }
 
-/* =========================
-   各エリア配置
-========================= */
+/* =====================================
+   左側（天気）
+===================================== */
 
-.clock{
-    grid-area: clock;
+.weather-panel{
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    width:100%;
-}
-.weather{
-    grid-area: weather;
     display:flex;
     flex-direction:column;
+
     justify-content:center;
     align-items:center;
-    gap:20px;
+
+    padding:40px;
+
 }
 
-.rain{
-    grid-area: rain;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-}
+.location{
 
-/* =========================
-   時計
-========================= */
+    font-size:64px;
 
-#date{
-    font-size:40px;
-    opacity:0.9;
-}
-
-#clock{
-    font-size:110px;
     font-weight:bold;
-}
 
-/* =========================
-   天気
-========================= */
+    margin-bottom:20px;
+
+}
 
 .weather-icon{
+
     font-size:200px;
+
+    line-height:1;
+
 }
 
 .weather-text{
-    font-size:64px;
+
+    font-size:70px;
+
     font-weight:bold;
+
+    margin-top:10px;
+
 }
 
-/* =========================
-   気温
-========================= */
-
 .temperature{
+
     display:flex;
-    gap:20px;
-    margin-top:10px;
+
+    gap:40px;
+
+    margin-top:50px;
+
 }
 
 .temp-box{
-    background:rgba(255,255,255,0.15);
-    padding:20px;
-    border-radius:16px;
-    width:160px;
+
+    background:rgba(255,255,255,.15);
+
+    padding:25px 40px;
+
+    border-radius:18px;
+
     text-align:center;
+
 }
 
 .label{
-    font-size:20px;
-    margin-bottom:10px;
+
+    font-size:28px;
+
 }
 
 .value{
-    font-size:48px;
+
+    font-size:70px;
+
     font-weight:bold;
+
 }
 
-/* =========================
-   降水確率
-========================= */
+/* =====================================
+   右側
+===================================== */
 
-.rain h3{
-    font-size:60px;
-    margin-bottom:20px;
-}
+.side-panel{
 
-.rain-simple{
     display:flex;
+
     flex-direction:column;
-    gap:25px;
-    font-size:50px;
-    font-weight:bold;
+
+    padding:40px;
+
 }
 
-/* =========================
-   フッター
-========================= */
+/* ロゴ */
 
-footer{
-    position:absolute;
-    bottom:10px;
-    right:20px;
-    font-size:18px;
-    opacity:0.8;
-}
-.location{
-    font-size:64px;
-    font-weight:bold;
-    margin-bottom:15px;
-    letter-spacing:3px;
-    text-align:center;
-    opacity:0.95;
-}
-.header{
+.logo-area{
+
     display:flex;
-    align-items:center;
-    justify-content:space-between;
+
+    justify-content:flex-end;
+
 }
 
 .logo{
-    height:80px;
+
+    height:90px;
+
     width:auto;
-    margin-right:30px;
+
 }
 
+/* 時計 */
+
 .clock-area{
-    text-align:right;
-    margin-left:auto;
+
+    margin-top:40px;
+
+    text-align:center;
+
+}
+
+#date{
+
+    font-size:36px;
+
+}
+
+#clock{
+
+    font-size:92px;
+
+    font-weight:bold;
+
+}
+
+/* 降水確率 */
+
+.rain{
+
+    margin-top:60px;
+
+}
+
+.rain h2{
+
+    font-size:42px;
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.rain-simple{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.rain-simple div{
+
+    font-size:42px;
+
+    background:rgba(255,255,255,.12);
+
+    padding:16px 24px;
+
+    border-radius:14px;
+
+}
+
+/* =====================================
+   フッター
+===================================== */
+
+footer{
+
+    position:fixed;
+
+    right:20px;
+
+    bottom:10px;
+
+    font-size:18px;
+
+    opacity:.8;
+
 }
