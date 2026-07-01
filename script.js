@@ -76,10 +76,10 @@ function render(data){
 
     const pop = d.precipitation_probability_max || [];
 
-    rain0.textContent = (pop[0] ?? "--") + "%";
-    rain6.textContent = (pop[1] ?? "--") + "%";
-    rain12.textContent = (pop[2] ?? "--") + "%";
-    rain18.textContent = (pop[3] ?? "--") + "%";
+    rain0.textContent = "今日 " + pop[0] + "%";
+    rain6.textContent = "明日 " + pop[1] + "%";
+    rain12.textContent = "明後日 " + pop[2] + "%";
+    rain18.textContent = "+3日 " + pop[3] + "%";
 
     updateTimeEl.textContent =
         "更新：" + new Date().toLocaleTimeString("ja-JP");
