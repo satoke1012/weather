@@ -1,6 +1,6 @@
-/* ===================================================
-   Weather Signage v1.0
-   =================================================== */
+/* =========================
+   サイネージ基本設定
+========================= */
 
 *{
     margin:0;
@@ -12,15 +12,14 @@ html,body{
     width:100%;
     height:100%;
     overflow:hidden;
-}
-    font-family:
-        "Yu Gothic UI",
-        "Meiryo",
-        sans-serif;
-
+    font-family:"Yu Gothic UI","Meiryo",sans-serif;
     background:#0d47a1;
-    color:white;
+    color:#fff;
 }
+
+/* =========================
+   全体レイアウト（横2カラム）
+========================= */
 
 .container{
     width:100%;
@@ -39,175 +38,143 @@ html,body{
     gap:20px;
     padding:40px;
 }
-/* ---------- Header ---------- */
 
-header { grid-area: header; }
-.weather { grid-area: weather; }
-.temperature { grid-area: temp; }
-.rain { grid-area: rain; }
+/* =========================
+   各エリア配置
+========================= */
 
-/* ---------- Date Time ---------- */
-
-.datetime{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:40px;
-
+header{
+    grid-area: header;
+    text-align:center;
 }
 
+.weather{
+    grid-area: weather;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.temperature{
+    grid-area: temp;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+}
+
+.rain{
+    grid-area: rain;
+}
+
+/* =========================
+   ヘッダー
+========================= */
+
+header h1{
+    font-size:56px;
+    font-weight:bold;
+}
+
+header h2{
+    font-size:32px;
+    margin-top:10px;
+    opacity:0.9;
+}
+
+/* =========================
+   日付・時計（JSそのまま）
+========================= */
+
 #date{
-
-    font-size:36px;
-
+    font-size:32px;
+    margin-bottom:10px;
 }
 
 #clock{
-
     font-size:64px;
-
     font-weight:bold;
-
 }
 
-/* ---------- Weather ---------- */
-
-.weather{
-
-    flex:1;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-}
+/* =========================
+   天気表示
+========================= */
 
 .weather-icon{
-
-    font-size:150px;
-
+    font-size:140px;
 }
 
 .weather-text{
-
-    margin-top:20px;
-
-    font-size:60px;
-
+    font-size:48px;
+    margin-top:10px;
     font-weight:bold;
-
+    text-align:center;
 }
 
-/* ---------- Temperature ---------- */
-
-.temperature{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:100px;
-
-    margin-top:30px;
-
-}
+/* =========================
+   気温
+========================= */
 
 .temp-box{
-
-    width:260px;
-
-    background:rgba(255,255,255,.15);
-
-    border-radius:18px;
-
+    background:rgba(255,255,255,0.15);
     padding:20px;
-
+    border-radius:16px;
+    width:200px;
     text-align:center;
-
 }
 
 .label{
-
-    font-size:28px;
-
+    font-size:22px;
+    margin-bottom:10px;
 }
 
 .value{
-
-    margin-top:10px;
-
-    font-size:60px;
-
+    font-size:48px;
     font-weight:bold;
-
 }
 
-/* ---------- Rain ---------- */
+/* =========================
+   降水確率
+========================= */
 
 .rain{
-
-    margin-top:40px;
-
+    margin-top:10px;
 }
 
 .rain h3{
-
     text-align:center;
-
-    font-size:34px;
-
-    margin-bottom:20px;
-
+    font-size:28px;
+    margin-bottom:10px;
 }
 
 .rain table{
-
     width:100%;
-
     border-collapse:collapse;
+}
 
+.rain th,
+.rain td{
+    padding:12px;
+    text-align:center;
+    font-size:26px;
 }
 
 .rain th{
-
-    background:rgba(255,255,255,.2);
-
-    padding:15px;
-
-    font-size:28px;
-
+    background:rgba(255,255,255,0.2);
 }
 
 .rain td{
-
-    background:rgba(255,255,255,.08);
-
-    padding:20px;
-
-    font-size:34px;
-
-    text-align:center;
-
+    background:rgba(255,255,255,0.1);
 }
 
-/* ---------- Footer ---------- */
+/* =========================
+   フッター
+========================= */
 
 footer{
-
-    margin-top:35px;
-
     text-align:right;
-
-    font-size:24px;
-
-    opacity:.8;
-
+    font-size:20px;
+    opacity:0.8;
 }
