@@ -148,10 +148,10 @@ footer{
     opacity:0.8;
 }
 .location{
-    font-size:42px;
+    font-size:64px;
     font-weight:bold;
-    margin-bottom:10px;
-    letter-spacing:2px;
+    margin-bottom:15px;
+    letter-spacing:3px;
     text-align:center;
-    opacity:0.9;
+    opacity:0.95;
 }
