@@ -41,28 +41,10 @@ html,body{
 }
 /* ---------- Header ---------- */
 
-header { grid-area: header; text-align:center; }
-
+header { grid-area: header; }
 .weather { grid-area: weather; }
-
 .temperature { grid-area: temp; }
-
 .rain { grid-area: rain; }
-header h1{
-
-    font-size:58px;
-    font-weight:bold;
-
-}
-
-header h2{
-
-    font-size:34px;
-    margin-top:10px;
-
-    opacity:.9;
-
-}
 
 /* ---------- Date Time ---------- */
 
