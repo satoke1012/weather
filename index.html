@@ -12,24 +12,14 @@
 
 <div class="container">
 
-  <div class="clock">
-    <div id="date"></div>
-    <div id="clock"></div>
-  </div>
+    <!-- ================= 時計 ================= -->
+    <div class="clock">
+        <div id="date"></div>
+        <div id="clock"></div>
+    </div>
 
-  <div class="weather">
-    <!-- 天気 -->
-  </div>
-
-  <div class="rain">
-    <!-- 降水確率 -->
-  </div>
-
-</div>
-    </section>
-
-    <!-- 天気 -->
-    <section class="weather">
+    <!-- ================= 天気 ================= -->
+    <div class="weather">
 
         <div class="weather-icon" id="weatherIcon">
             ☀️
@@ -39,65 +29,44 @@
             読み込み中...
         </div>
 
-    </section>
+        <div class="temperature">
 
-    <!-- 気温 -->
-    <section class="temperature">
-
-        <div class="temp-box">
-
-            <div class="label">
-                最高気温
+            <div class="temp-box">
+                <div class="label">最高気温</div>
+                <div class="value" id="maxTemp">--</div>
             </div>
 
-            <div class="value" id="maxTemp">
-                --
+            <div class="temp-box">
+                <div class="label">最低気温</div>
+                <div class="value" id="minTemp">--</div>
             </div>
 
         </div>
-
-        <div class="temp-box">
-
-            <div class="label">
-                最低気温
-            </div>
-
-            <div class="value" id="minTemp">
-                --
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- 降水確率 -->
- <section class="rain">
-
-    <h3>降水確率</h3>
-
-    <div class="rain-simple">
-
-        <div id="rain0">今日 --%</div>
-        <div id="rain6">明日 --%</div>
-        <div id="rain12">明後日 --%</div>
-        <div id="rain18">3日後 --%</div>
 
     </div>
 
-</section>
+    <!-- ================= 降水確率 ================= -->
+    <div class="rain">
 
-    <!-- 更新時刻 -->
-    <footer>
+        <h3>降水確率</h3>
 
-        <div id="updateTime">
+        <div class="rain-simple">
 
-            気象庁データ取得中...
+            <div id="rain0">今日 --%</div>
+            <div id="rain6">明日 --%</div>
+            <div id="rain12">明後日 --%</div>
+            <div id="rain18">3日後 --%</div>
 
         </div>
 
-    </footer>
+    </div>
 
 </div>
+
+<!-- ================= 更新時刻 ================= -->
+<footer>
+    <div id="updateTime">気象庁データ取得中...</div>
+</footer>
 
 <script src="script.js"></script>
 
