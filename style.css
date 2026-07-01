@@ -155,3 +155,17 @@ footer{
     text-align:center;
     opacity:0.95;
 }
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    height:80px;
+    width:auto;
+}
+
+.clock-area{
+    text-align:right;
+}
