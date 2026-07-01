@@ -24,7 +24,6 @@ html,body{
 .container{
     width:100%;
     height:100%;
-
     display:grid;
 
     grid-template-columns: 1fr 1fr;
@@ -41,6 +40,12 @@ html,body{
 .clock{ grid-area: clock; }
 .weather{ grid-area: weather; }
 .rain{ grid-area: rain; }
+
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+}
 /* =========================
    各エリア配置
 ========================= */
