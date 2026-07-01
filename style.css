@@ -8,7 +8,7 @@
     box-sizing:border-box;
 }
 
-html, body {
+html,body{
     width:100%;
     height:100%;
     overflow:hidden;
@@ -25,10 +25,9 @@ html, body {
 .container{
     width:100%;
     height:100%;
-
     display:grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
     grid-template-rows: auto 1fr auto;
 
     grid-template-areas:
@@ -36,9 +35,9 @@ html, body {
         "weather temp"
         "rain rain";
 
+    gap:20px;
     padding:40px;
 }
-
 /* ---------- Header ---------- */
 
 header { grid-area: header; text-align:center; }
@@ -48,7 +47,6 @@ header { grid-area: header; text-align:center; }
 .temperature { grid-area: temp; }
 
 .rain { grid-area: rain; }
-
 header h1{
 
     font-size:58px;
