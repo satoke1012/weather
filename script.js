@@ -1,7 +1,6 @@
 
 /* ================================
-   太田市 天気サイネージ（Open-Meteo版）
-   安定・シンプル・エラー対策済み
+   Open-Meteo 天気サイネージ 完成版
 ================================ */
 
 const LAT = 36.305;
@@ -13,6 +12,8 @@ const URL =
 &longitude=${LON}
 &daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode
 &timezone=Asia/Tokyo`;
+
+const CACHE_KEY = "weather_openmeteo";
 
 /* ================= DOM ================= */
 
@@ -41,8 +42,6 @@ updateClock();
 
 /* ================= キャッシュ ================= */
 
-const CACHE_KEY = "weather_openmeteo";
-
 function saveCache(data) {
     localStorage.setItem(CACHE_KEY, JSON.stringify({
         time: Date.now(),
@@ -66,6 +65,15 @@ function getIcon(code) {
     return "🌩️";
 }
 
+/* ================= 降水コメント ================= */
+
+function rainLabel(p) {
+    if (p >= 70) return "☔ 傘必須";
+    if (p >= 40) return "🌂 念のため傘";
+    if (p >= 20) return "☁️ 少し注意";
+    return "☀️ ほぼ安心";
+}
+
 /* ================= 取得 ================= */
 
 async function fetchWeather() {
@@ -81,8 +89,6 @@ async function fetchWeather() {
         render(data);
 
     } catch (e) {
-
-        console.log("API失敗、キャッシュ使用");
 
         const cache = loadCache();
 
@@ -100,11 +106,7 @@ async function fetchWeather() {
 function render(data) {
 
     const daily = data?.daily;
-
-    if (!daily) {
-        weatherText.textContent = "データなし";
-        return;
-    }
+    if (!daily) return;
 
     /* 天気 */
     const code = daily.weathercode?.[0] ?? 0;
@@ -115,12 +117,14 @@ function render(data) {
     maxTemp.textContent = (daily.temperature_2m_max?.[0] ?? "--") + "℃";
     minTemp.textContent = (daily.temperature_2m_min?.[0] ?? "--") + "℃";
 
-    /* 降水確率 */
-    rain0.textContent = (daily.precipitation_probability_max?.[0] ?? "--") + "%";
-    rain1.textContent = (daily.precipitation_probability_max?.[1] ?? "--") + "%";
-    rain2.textContent = (daily.precipitation_probability_max?.[2] ?? "--") + "%";
+    /* 降水（コメント付き） */
+    const p = daily.precipitation_probability_max || [];
 
-    /* 更新時刻 */
+    rain0.textContent = `${p[0] ?? "--"}% ${rainLabel(p[0] ?? 0)}`;
+    rain1.textContent = `${p[1] ?? "--"}% ${rainLabel(p[1] ?? 0)}`;
+    rain2.textContent = `${p[2] ?? "--"}% ${rainLabel(p[2] ?? 0)}`;
+
+    /* 更新 */
     updateTime.textContent =
         "更新：" + new Date().toLocaleTimeString("ja-JP");
 }
