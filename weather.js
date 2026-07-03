@@ -67,3 +67,56 @@ async function loadWeather(){
     }
 
 }
+/*
+==========================================
+ 群馬県南部を探す
+==========================================
+*/
+
+function getSouthArea(data){
+
+    const areas =
+
+        data[0].timeSeries[0].areas;
+
+    for(const area of areas){
+
+        if(area.area.name === "南部"){
+
+            return area;
+
+        }
+
+    }
+
+    return null;
+
+}
+/*
+==========================================
+ JSON解析
+==========================================
+*/
+
+function parseWeather(data){
+
+    const south = getSouthArea(data);
+
+    if(!south){
+
+        showError();
+
+        return;
+
+    }
+
+    console.log(south);
+
+}
+function showError(){
+
+    document.getElementById("weatherIcon").textContent="⚠️";
+
+    document.getElementById("weatherText").textContent="取得失敗";
+
+}
