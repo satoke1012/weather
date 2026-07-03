@@ -1,6 +1,6 @@
-/* =====================================
-   リセット
-===================================== */
+/* ===========================================
+   太田市 天気サイネージ Ver.4
+=========================================== */
 
 *{
     margin:0;
@@ -8,116 +8,112 @@
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
 
     width:100%;
     height:100%;
+
+    font-family:
+        "Yu Gothic UI",
+        "Meiryo",
+        sans-serif;
+
+    background:#0f172a;
+    color:white;
 
     overflow:hidden;
 
-    font-family:"Yu Gothic UI","Meiryo",sans-serif;
-
-    background:linear-gradient(135deg,#1565C0,#0D47A1);
-
-    color:#fff;
-
 }
-
-/* =====================================
-   全体レイアウト
-===================================== */
 
 .container{
 
-    display:grid;
-
-    grid-template-columns:55% 45%;
-    grid-template-rows:110px 1fr;
-
-    grid-template-areas:
-        "header header"
-        "weather side";
+    display:flex;
+    flex-direction:column;
 
     width:100%;
     height:100%;
 
 }
 
-/* =====================================
-   ヘッダー
-===================================== */
+/* ===========================================
+    Header
+=========================================== */
 
 .header{
 
-    grid-area:header;
+    height:90px;
 
     display:flex;
 
     justify-content:space-between;
-
     align-items:center;
 
-    padding:20px 50px;
+    padding:0 40px;
 
-    background:rgba(255,255,255,.08);
+    background:#1e293b;
 
-    backdrop-filter:blur(8px);
+    border-bottom:3px solid #334155;
 
 }
 
 .location{
 
-    font-size:60px;
-
+    font-size:2rem;
     font-weight:bold;
-
-    letter-spacing:2px;
 
 }
 
 .logo{
 
-    height:80px;
-
-    width:auto;
+    height:60px;
 
 }
 
-/* =====================================
-   左側（天気）
-===================================== */
+/* ===========================================
+    Main
+=========================================== */
+
+.main-area{
+
+    flex:1;
+
+    display:flex;
+
+}
+
+/* ===========================================
+    Weather
+=========================================== */
 
 .weather-panel{
 
-    grid-area:weather;
+    flex:2;
 
     display:flex;
 
     flex-direction:column;
 
     justify-content:center;
-
     align-items:center;
-
-    padding:30px;
 
 }
 
 .weather-icon{
 
-    font-size:220px;
+    font-size:9rem;
 
-    line-height:1;
+    margin-bottom:20px;
 
 }
 
 .weather-text{
 
-    margin-top:10px;
-
-    font-size:72px;
+    font-size:3rem;
 
     font-weight:bold;
+
+    margin-bottom:40px;
 
 }
 
@@ -127,19 +123,17 @@ html,body{
 
     gap:40px;
 
-    margin-top:50px;
-
 }
 
 .temp-box{
 
     width:220px;
 
-    padding:25px;
+    background:#1e293b;
 
-    border-radius:18px;
+    border-radius:20px;
 
-    background:rgba(255,255,255,.15);
+    padding:20px;
 
     text-align:center;
 
@@ -147,41 +141,43 @@ html,body{
 
 .label{
 
-    font-size:26px;
+    font-size:1.3rem;
+
+    margin-bottom:15px;
 
 }
 
 .value{
 
-    margin-top:10px;
-
-    font-size:64px;
+    font-size:3rem;
 
     font-weight:bold;
 
 }
 
-/* =====================================
-   右側
-===================================== */
+/* ===========================================
+    Side
+=========================================== */
 
 .side-panel{
 
-    grid-area:side;
+    width:420px;
 
     display:flex;
 
     flex-direction:column;
 
-    justify-content:space-evenly;
-
-    padding:30px 40px;
+    background:#111827;
 
 }
 
-/* 時計 */
+/* ===========================================
+    Clock
+=========================================== */
 
-.clock-area{
+.clock-panel{
+
+    padding:35px;
 
     text-align:center;
 
@@ -189,29 +185,39 @@ html,body{
 
 #date{
 
-    font-size:36px;
+    font-size:2rem;
+
+    margin-bottom:15px;
 
 }
 
 #clock{
 
-    font-size:90px;
+    font-size:4rem;
 
     font-weight:bold;
 
 }
 
-/* =====================================
-   降水確率
-===================================== */
+/* ===========================================
+    Rain
+=========================================== */
+
+.rain-panel{
+
+    flex:1;
+
+    padding:30px;
+
+}
 
 .rain-panel h2{
 
     text-align:center;
 
-    font-size:42px;
+    margin-bottom:20px;
 
-    margin-bottom:25px;
+    font-size:2rem;
 
 }
 
@@ -223,32 +229,41 @@ html,body{
 
     align-items:center;
 
-    margin-bottom:18px;
+    background:#1e293b;
+
+    border-radius:15px;
 
     padding:18px 25px;
 
-    background:rgba(255,255,255,.12);
+    margin-bottom:15px;
 
-    border-radius:14px;
-
-    font-size:36px;
+    font-size:1.8rem;
 
 }
 
-/* =====================================
-   フッター
-===================================== */
+/* ===========================================
+    Footer
+=========================================== */
 
 footer{
 
-    position:fixed;
+    height:55px;
 
-    right:20px;
+    display:flex;
 
-    bottom:10px;
+    justify-content:center;
+    align-items:center;
 
-    font-size:18px;
+    background:#1e293b;
 
-    opacity:.8;
+    border-top:3px solid #334155;
+
+}
+
+#updateTime{
+
+    font-size:1.1rem;
+
+    color:#cbd5e1;
 
 }
