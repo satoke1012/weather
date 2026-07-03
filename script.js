@@ -6,8 +6,7 @@ const LAT = 36.305;
 const LON = 139.378;
 
 const URL =
-`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=Asia%2FTokyo`;
-
+"https://www.jma.go.jp/bosai/forecast/data/forecast/100000.json";
 /* ===== DOM ===== */
 const dateEl = document.getElementById("date");
 const clockEl = document.getElementById("clock");
