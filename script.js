@@ -1,3 +1,8 @@
+/*
+=====================================
+ 太田市 天気サイネージ Ver.5 FIX
+=====================================
+*/
 
 const URL =
 "https://www.jma.go.jp/bosai/forecast/data/forecast/100000.json";
@@ -23,7 +28,6 @@ const clockEl = document.getElementById("clock");
 /* ================= 時計 ================= */
 
 function updateClock() {
-
     const now = new Date();
 
     dateEl.textContent = now.toLocaleDateString("ja-JP", {
@@ -65,7 +69,7 @@ function safe(obj, path, fallback = null) {
 
 /* ================= アイコン ================= */
 
-function icon(code) {
+function getIcon(code) {
     code = String(code);
 
     if (["100", "101", "110"].includes(code)) return "☀️";
@@ -78,9 +82,7 @@ function icon(code) {
 /* ================= 取得 ================= */
 
 async function fetchWeather() {
-
     try {
-
         const res = await fetch(URL, { cache: "no-store" });
         const json = await res.json();
 
@@ -88,7 +90,6 @@ async function fetchWeather() {
         render(json);
 
     } catch (e) {
-
         const cache = loadCache();
 
         if (cache) {
@@ -102,58 +103,51 @@ async function fetchWeather() {
 
 /* ================= 南部取得 ================= */
 
-function getSouth(data) {
-
-    const areas = safe(data, "0.timeSeries.0.areas", []);
-
-    return areas.find(a =>
+function getSouth(areaList) {
+    return areaList.find(a =>
         a.area?.name?.includes("南部")
-    ) || null;
+    );
 }
 
 /* ================= 描画 ================= */
 
 function render(data) {
 
-    const south = getSouth(data);
+    const series = data?.[0]?.timeSeries;
 
-    if (!south) {
-        weatherText.textContent = "データなし";
-        return;
-    }
+    if (!series) return;
 
-    /* 天気 */
-    const weather = safe(south, "weathers.0", "不明");
-    const code = safe(south, "weatherCodes.0", "100");
+    /* ===== 天気 ===== */
+    const weatherAreas = series[0].areas;
+    const southWeather = getSouth(weatherAreas) || weatherAreas[0];
 
-    weatherText.textContent = weather;
-    weatherIcon.textContent = icon(code);
+    weatherText.textContent = southWeather.weathers[0];
+    weatherIcon.textContent = getIcon(southWeather.weatherCodes[0]);
 
-    /* 降水確率 */
-    const pops = safe(data, "0.timeSeries.1.areas.0.pops", []);
+    /* ===== 降水確率 ===== */
+    const popsAreas = series[1].areas;
+    const southPop = getSouth(popsAreas) || popsAreas[0];
+
+    const pops = southPop.pops;
 
     rainToday.textContent = (pops[0] ?? "--") + "%";
     rainTomorrow.textContent = (pops[1] ?? "--") + "%";
     rainAfter.textContent = (pops[2] ?? "--") + "%";
 
-    /* ★気温（ここが修正版） */
-    const tempsArea = safe(data, "0.timeSeries.2.areas.0", null);
+    /* ===== 気温（重要修正） ===== */
+    const tempAreas = series[2]?.areas || [];
 
-    if (tempsArea) {
+    const temp = tempAreas[0]; // ← 気温は南部検索しない（ここ重要）
 
-        maxTemp.textContent =
-            (tempsArea.tempsMax?.[0] ?? "--") + "℃";
-
-        minTemp.textContent =
-            (tempsArea.tempsMin?.[0] ?? "--") + "℃";
-
+    if (temp) {
+        maxTemp.textContent = (temp.tempsMax?.[0] ?? "--") + "℃";
+        minTemp.textContent = (temp.tempsMin?.[0] ?? "--") + "℃";
     } else {
-
         maxTemp.textContent = "--℃";
         minTemp.textContent = "--℃";
-
     }
 
+    /* ===== 更新時刻 ===== */
     updateTime.textContent =
         "更新：" + new Date().toLocaleTimeString("ja-JP");
 }
