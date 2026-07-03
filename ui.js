@@ -1,1 +1,1 @@
-
+drawWeather(data);
