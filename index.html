@@ -4,76 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>太田市 天気サイネージ Ver.5</title>
+    <title>太田市 天気サイネージ</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
+<header class="header">
+    <div class="title">群馬県 太田市 天気情報</div>
+    <div id="clock">--:--:--</div>
+</header>
 
-    <header class="header">
-        <div class="location">群馬県 太田市</div>
-        <div class="logo-area">
-            <img src="logo.png" class="logo" alt="logo">
+<main class="main">
+
+    <!-- 天気 -->
+    <section class="weather">
+        <div id="weatherIcon">☀️</div>
+        <div id="weatherText">読み込み中...</div>
+    </section>
+
+    <!-- 気温 -->
+    <section class="temp">
+        <div>
+            <div>最高</div>
+            <div id="maxTemp">--℃</div>
         </div>
-    </header>
 
-    <main class="main-area">
+        <div>
+            <div>最低</div>
+            <div id="minTemp">--℃</div>
+        </div>
+    </section>
 
-        <section class="weather-panel">
+    <!-- 降水 -->
+    <section class="rain">
+        <div>今日 <span id="rain0">--%</span></div>
+        <div>明日 <span id="rain1">--%</span></div>
+        <div>明後日 <span id="rain2">--%</span></div>
+    </section>
 
-            <div id="weatherIcon" class="weather-icon">☀️</div>
-
-            <div id="weatherText" class="weather-text">読み込み中...</div>
-
-            <div class="temperature">
-                <div class="temp-box">
-                    <div class="label">最高</div>
-                    <div id="maxTemp" class="value">--</div>
-                </div>
-
-                <div class="temp-box">
-                    <div class="label">最低</div>
-                    <div id="minTemp" class="value">--</div>
-                </div>
-            </div>
-
-        </section>
-
-        <aside class="side-panel">
-
-            <div class="clock-panel">
-                <div id="date"></div>
-                <div id="clock"></div>
-            </div>
-
-            <div class="rain-panel">
-
-                <h2>降水確率</h2>
-
-                <div class="rain-card">
-                    <span>今日</span>
-                    <span id="rainToday">--%</span>
-                </div>
-
-                <div class="rain-card">
-                    <span>明日</span>
-                    <span id="rainTomorrow">--%</span>
-                </div>
-
-                <div class="rain-card">
-                    <span>明後日</span>
-                    <span id="rainAfter">--%</span>
-                </div>
-
-            </div>
-
-        </aside>
-
-    </main>
-
-</div>
+</main>
 
 <footer>
     <div id="updateTime">--</div>
