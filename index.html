@@ -11,11 +11,18 @@
 
 <body>
 
+<!-- ================= ヘッダー ================= -->
 <header class="header">
+
+    <img src="logo.png" class="logo" alt="ロゴ">
+
     <div class="title">群馬県 太田市 天気情報</div>
+
     <div id="clock">--:--:--</div>
+
 </header>
 
+<!-- ================= メイン ================= -->
 <main class="main">
 
     <!-- 天気 -->
@@ -27,17 +34,17 @@
     <!-- 気温 -->
     <section class="temp">
         <div>
-            <div>最高</div>
+            <div>最高気温</div>
             <div id="maxTemp">--℃</div>
         </div>
 
         <div>
-            <div>最低</div>
+            <div>最低気温</div>
             <div id="minTemp">--℃</div>
         </div>
     </section>
 
-    <!-- 降水 -->
+    <!-- 降水確率 -->
     <section class="rain">
         <div>今日 <span id="rain0">--%</span></div>
         <div>明日 <span id="rain1">--%</span></div>
@@ -46,6 +53,7 @@
 
 </main>
 
+<!-- ================= フッター ================= -->
 <footer>
     <div id="updateTime">--</div>
 </footer>
