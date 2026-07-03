@@ -1,1 +1,3 @@
+saveCache(data);
 
+loadCache();
