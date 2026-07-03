@@ -1,108 +1,126 @@
 
-/* =====================
-   全体
-===================== */
+/* =========================
+   ベース
+========================= */
 
 body {
     margin: 0;
     font-family: "Arial", "Hiragino Kaku Gothic ProN", sans-serif;
-    background: #0b1220;
+    background: #0a1020;
     color: #ffffff;
 }
 
-/* =====================
+/* =========================
    ヘッダー
-===================== */
+========================= */
 
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
     padding: 20px 30px;
     background: #111a2e;
+}
+
+/* ロゴ */
+.logo {
+    height: 60px;
+}
+
+/* タイトル */
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* 時計 */
+#clock {
     font-size: 28px;
     font-weight: bold;
 }
 
-#clock {
-    font-size: 26px;
-}
-
-/* =====================
-   メイン
-===================== */
+/* =========================
+   メイン全体
+========================= */
 
 .main {
+    padding: 40px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    padding: 30px;
+    gap: 50px;
 }
 
-/* =====================
-   天気
-===================== */
+/* =========================
+   天気（メイン）
+========================= */
 
 .weather {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 48px;
+    text-align: center;
 }
 
 #weatherIcon {
-    font-size: 80px;
+    font-size: 140px;
+    line-height: 1;
 }
 
 #weatherText {
-    font-size: 32px;
+    font-size: 36px;
+    margin-top: 10px;
 }
 
-/* =====================
+/* =========================
    気温
-===================== */
+========================= */
 
 .temp {
     display: flex;
-    gap: 60px;
-    font-size: 28px;
+    justify-content: center;
+    gap: 120px;
+    text-align: center;
 }
 
-.temp div {
-    text-align: center;
+.temp div div:first-child {
+    font-size: 24px;
+    opacity: 0.8;
 }
 
 #maxTemp,
 #minTemp {
-    font-size: 42px;
+    font-size: 64px;
     font-weight: bold;
 }
 
-/* =====================
-   降水
-===================== */
+/* =========================
+   降水確率
+========================= */
 
 .rain {
     display: flex;
+    justify-content: center;
     gap: 40px;
-    font-size: 28px;
+    font-size: 26px;
 }
 
 .rain div {
     background: #16233d;
-    padding: 15px 25px;
-    border-radius: 10px;
+    padding: 20px 30px;
+    border-radius: 12px;
+    min-width: 140px;
+    text-align: center;
 }
 
-/* =====================
+/* =========================
    フッター
-===================== */
+========================= */
 
 footer {
     position: absolute;
     bottom: 10px;
     width: 100%;
     text-align: center;
+
     font-size: 18px;
     color: #9aa4b2;
 }
