@@ -1,6 +1,7 @@
 /*
 =====================================
- 太田市 天気サイネージ Ver.5 FIX
+ 太田市 天気サイネージ Ver.5 FINAL FIX
+（気温・降水・天気すべて安定版）
 =====================================
 */
 
@@ -103,10 +104,8 @@ async function fetchWeather() {
 
 /* ================= 南部取得 ================= */
 
-function getSouth(areaList) {
-    return areaList.find(a =>
-        a.area?.name?.includes("南部")
-    );
+function findArea(list, keyword) {
+    return list.find(a => a.area?.name?.includes(keyword));
 }
 
 /* ================= 描画 ================= */
@@ -114,40 +113,45 @@ function getSouth(areaList) {
 function render(data) {
 
     const series = data?.[0]?.timeSeries;
-
     if (!series) return;
 
     /* ===== 天気 ===== */
-    const weatherAreas = series[0].areas;
-    const southWeather = getSouth(weatherAreas) || weatherAreas[0];
+    const weatherAreas = series[0]?.areas || [];
+    const weather = findArea(weatherAreas, "南部") || weatherAreas[0];
 
-    weatherText.textContent = southWeather.weathers[0];
-    weatherIcon.textContent = getIcon(southWeather.weatherCodes[0]);
+    if (weather) {
+        weatherText.textContent = weather.weathers?.[0] ?? "不明";
+        weatherIcon.textContent = getIcon(weather.weatherCodes?.[0]);
+    }
 
-    /* ===== 降水確率 ===== */
-    const popsAreas = series[1].areas;
-    const southPop = getSouth(popsAreas) || popsAreas[0];
+    /* ===== 降水 ===== */
+    const popAreas = series[1]?.areas || [];
+    const pop = findArea(popAreas, "南部") || popAreas[0];
 
-    const pops = southPop.pops;
+    if (pop) {
+        const p = pop.pops || [];
+        rainToday.textContent = (p[0] ?? "--") + "%";
+        rainTomorrow.textContent = (p[1] ?? "--") + "%";
+        rainAfter.textContent = (p[2] ?? "--") + "%";
+    }
 
-    rainToday.textContent = (pops[0] ?? "--") + "%";
-    rainTomorrow.textContent = (pops[1] ?? "--") + "%";
-    rainAfter.textContent = (pops[2] ?? "--") + "%";
-
-    /* ===== 気温（重要修正） ===== */
+    /* ===== 気温（完全安定版） ===== */
     const tempAreas = series[2]?.areas || [];
 
-    const temp = tempAreas[0]; // ← 気温は南部検索しない（ここ重要）
+    const temp =
+        findArea(tempAreas, "南部") ||
+        tempAreas.find(t => t.tempsMax?.length > 0) ||
+        tempAreas[0];
 
-    if (temp) {
-        maxTemp.textContent = (temp.tempsMax?.[0] ?? "--") + "℃";
-        minTemp.textContent = (temp.tempsMin?.[0] ?? "--") + "℃";
+    if (temp && temp.tempsMax) {
+        maxTemp.textContent = temp.tempsMax?.[0] ?? "--" + "℃";
+        minTemp.textContent = temp.tempsMin?.[0] ?? "--" + "℃";
     } else {
         maxTemp.textContent = "--℃";
         minTemp.textContent = "--℃";
     }
 
-    /* ===== 更新時刻 ===== */
+    /* ===== 更新時間 ===== */
     updateTime.textContent =
         "更新：" + new Date().toLocaleTimeString("ja-JP");
 }
