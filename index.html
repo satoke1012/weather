@@ -1,64 +1,24 @@
-<!DOCTYPE html>
-<html lang="ja">
+<section class="rain-section">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>太田市 天気サイネージ</title>
+    <h2 class="rain-title">降水確率</h2>
 
-    <link rel="stylesheet" href="style.css">
-</head>
+    <div class="rain">
 
-<body>
-
-<!-- ================= ヘッダー ================= -->
-<header class="header">
-
-    <img src="logo.png" class="logo" alt="ロゴ">
-
-    <div class="title">群馬県 太田市 天気情報</div>
-
-    <div id="clock">--:--:--</div>
-
-</header>
-
-<!-- ================= メイン ================= -->
-<main class="main">
-
-    <!-- 天気 -->
-    <section class="weather">
-        <div id="weatherIcon">☀️</div>
-        <div id="weatherText">読み込み中...</div>
-    </section>
-
-    <!-- 気温 -->
-    <section class="temp">
         <div>
-            <div>最高気温</div>
-            <div id="maxTemp">--℃</div>
+            <div>今日</div>
+            <div id="rain0">--%</div>
         </div>
 
         <div>
-            <div>最低気温</div>
-            <div id="minTemp">--℃</div>
+            <div>明日</div>
+            <div id="rain1">--%</div>
         </div>
-    </section>
 
-    <!-- 降水確率 -->
-    <section class="rain">
-        <div>今日 <span id="rain0">--%</span></div>
-        <div>明日 <span id="rain1">--%</span></div>
-        <div>明後日 <span id="rain2">--%</span></div>
-    </section>
+        <div>
+            <div>明後日</div>
+            <div id="rain2">--%</div>
+        </div>
 
-</main>
+    </div>
 
-<!-- ================= フッター ================= -->
-<footer>
-    <div id="updateTime">--</div>
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-</html>
+</section>
