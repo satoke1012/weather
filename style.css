@@ -14,7 +14,7 @@ body {
     transform-origin: top left;
 
     /* はみ出し防止 */
-    width: 115%;
+    width: 100%;
     overflow-x: hidden;
 }
 
