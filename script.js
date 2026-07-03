@@ -1,43 +1,33 @@
-/*
-=====================================
- 太田市 天気サイネージ Ver.5 FINAL FIX
-（気温・降水・天気すべて安定版）
-=====================================
-*/
+
+/* ================================
+   太田市 天気サイネージ Ver.6 FINAL
+   気象庁API 安定版
+================================ */
 
 const URL =
 "https://www.jma.go.jp/bosai/forecast/data/forecast/100000.json";
 
-const CACHE_KEY = "weather_v5";
+const CACHE_KEY = "weather_v6";
 
 /* ================= DOM ================= */
 
 const weatherIcon = document.getElementById("weatherIcon");
 const weatherText = document.getElementById("weatherText");
+
 const maxTemp = document.getElementById("maxTemp");
 const minTemp = document.getElementById("minTemp");
 
-const rainToday = document.getElementById("rainToday");
-const rainTomorrow = document.getElementById("rainTomorrow");
-const rainAfter = document.getElementById("rainAfter");
+const rain0 = document.getElementById("rain0");
+const rain1 = document.getElementById("rain1");
+const rain2 = document.getElementById("rain2");
 
 const updateTime = document.getElementById("updateTime");
-
-const dateEl = document.getElementById("date");
 const clockEl = document.getElementById("clock");
 
 /* ================= 時計 ================= */
 
 function updateClock() {
     const now = new Date();
-
-    dateEl.textContent = now.toLocaleDateString("ja-JP", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        weekday: "long"
-    });
-
     clockEl.textContent = now.toLocaleTimeString("ja-JP");
 }
 
@@ -68,7 +58,7 @@ function safe(obj, path, fallback = null) {
     }
 }
 
-/* ================= アイコン ================= */
+/* ================= 天気アイコン ================= */
 
 function getIcon(code) {
     code = String(code);
@@ -80,7 +70,7 @@ function getIcon(code) {
     return "🌫️";
 }
 
-/* ================= 取得 ================= */
+/* ================= データ取得 ================= */
 
 async function fetchWeather() {
     try {
@@ -102,7 +92,7 @@ async function fetchWeather() {
     }
 }
 
-/* ================= 南部取得 ================= */
+/* ================= 南部検索 ================= */
 
 function findArea(list, keyword) {
     return list.find(a => a.area?.name?.includes(keyword));
@@ -115,27 +105,27 @@ function render(data) {
     const series = data?.[0]?.timeSeries;
     if (!series) return;
 
-    /* ===== 天気 ===== */
+    /* ================= 天気 ================= */
     const weatherAreas = series[0]?.areas || [];
     const weather = findArea(weatherAreas, "南部") || weatherAreas[0];
 
     if (weather) {
-        weatherText.textContent = weather.weathers?.[0] ?? "不明";
+        weatherText.textContent = weather.weathers?.[0] ?? "--";
         weatherIcon.textContent = getIcon(weather.weatherCodes?.[0]);
     }
 
-    /* ===== 降水 ===== */
+    /* ================= 降水 ================= */
     const popAreas = series[1]?.areas || [];
     const pop = findArea(popAreas, "南部") || popAreas[0];
 
     if (pop) {
         const p = pop.pops || [];
-        rainToday.textContent = (p[0] ?? "--") + "%";
-        rainTomorrow.textContent = (p[1] ?? "--") + "%";
-        rainAfter.textContent = (p[2] ?? "--") + "%";
+        rain0.textContent = (p[0] ?? "--") + "%";
+        rain1.textContent = (p[1] ?? "--") + "%";
+        rain2.textContent = (p[2] ?? "--") + "%";
     }
 
-    /* ===== 気温（完全安定版） ===== */
+    /* ================= 気温 ================= */
     const tempAreas = series[2]?.areas || [];
 
     const temp =
@@ -151,7 +141,7 @@ function render(data) {
         minTemp.textContent = "--℃";
     }
 
-    /* ===== 更新時間 ===== */
+    /* ================= 更新時間 ================= */
     updateTime.textContent =
         "更新：" + new Date().toLocaleTimeString("ja-JP");
 }
