@@ -10,7 +10,7 @@ body {
     color: #1b2a41;
 
     /* ★全体約13%縮小（0.97 → 0.87） */
-    transform: scale(0.95);
+    transform: scale(0.87);
     transform-origin: top left;
 
     /* はみ出し防止 */
