@@ -1,15 +1,11 @@
-
 /* =========================
-   ベース（明るめサイネージ）
+   ベース
 ========================= */
 
 body {
     margin: 0;
     font-family: "Arial", "Hiragino Kaku Gothic ProN", sans-serif;
-
-    /* 🌤 明るめグラデーション */
     background: linear-gradient(135deg, #e9f2ff, #f7fbff);
-
     color: #1b2a41;
 }
 
@@ -23,10 +19,7 @@ body {
     justify-content: space-between;
 
     padding: 20px 30px;
-
-    /* 少し濃いブルーで締める */
     background: linear-gradient(90deg, #4a6fa5, #5c86c4);
-
     color: white;
 }
 
@@ -74,7 +67,7 @@ body {
 }
 
 /* =========================
-   気温（見やすいカード化）
+   気温
 ========================= */
 
 .temp {
@@ -87,9 +80,7 @@ body {
     background: white;
     padding: 25px 40px;
     border-radius: 16px;
-
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-
     text-align: center;
 }
 
@@ -105,8 +96,19 @@ body {
 }
 
 /* =========================
-   降水
+   降水確率
 ========================= */
+
+.rain-section {
+    text-align: center;
+}
+
+.rain-section h2 {
+    font-size: 34px;
+    margin: 0 0 20px 0;
+    color: #355b8c;
+    font-weight: bold;
+}
 
 .rain {
     display: flex;
@@ -118,11 +120,22 @@ body {
     background: white;
     padding: 20px 30px;
     border-radius: 14px;
-
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-
     min-width: 140px;
     text-align: center;
+}
+
+.rain div div:first-child {
+    font-size: 22px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+#rain0,
+#rain1,
+#rain2 {
+    font-size: 42px;
+    font-weight: bold;
 }
 
 /* =========================
@@ -134,7 +147,6 @@ footer {
     bottom: 10px;
     width: 100%;
     text-align: center;
-
     font-size: 18px;
     color: #5a6b7a;
 }
