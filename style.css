@@ -1,13 +1,16 @@
 
 /* =========================
-   ベース
+   ベース（明るめサイネージ）
 ========================= */
 
 body {
     margin: 0;
     font-family: "Arial", "Hiragino Kaku Gothic ProN", sans-serif;
-    background: #0a1020;
-    color: #ffffff;
+
+    /* 🌤 明るめグラデーション */
+    background: linear-gradient(135deg, #e9f2ff, #f7fbff);
+
+    color: #1b2a41;
 }
 
 /* =========================
@@ -20,29 +23,29 @@ body {
     justify-content: space-between;
 
     padding: 20px 30px;
-    background: #111a2e;
+
+    /* 少し濃いブルーで締める */
+    background: linear-gradient(90deg, #4a6fa5, #5c86c4);
+
+    color: white;
 }
 
-/* ロゴ */
 .logo {
     height: 60px;
 }
 
-/* タイトル */
 .title {
     font-size: 32px;
     font-weight: bold;
-    letter-spacing: 1px;
 }
 
-/* 時計 */
 #clock {
     font-size: 28px;
     font-weight: bold;
 }
 
 /* =========================
-   メイン全体
+   メイン
 ========================= */
 
 .main {
@@ -53,7 +56,7 @@ body {
 }
 
 /* =========================
-   天気（メイン）
+   天気
 ========================= */
 
 .weather {
@@ -71,19 +74,28 @@ body {
 }
 
 /* =========================
-   気温
+   気温（見やすいカード化）
 ========================= */
 
 .temp {
     display: flex;
     justify-content: center;
     gap: 120px;
+}
+
+.temp div {
+    background: white;
+    padding: 25px 40px;
+    border-radius: 16px;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+
     text-align: center;
 }
 
 .temp div div:first-child {
-    font-size: 24px;
-    opacity: 0.8;
+    font-size: 22px;
+    opacity: 0.7;
 }
 
 #maxTemp,
@@ -93,20 +105,22 @@ body {
 }
 
 /* =========================
-   降水確率
+   降水
 ========================= */
 
 .rain {
     display: flex;
     justify-content: center;
     gap: 40px;
-    font-size: 26px;
 }
 
 .rain div {
-    background: #16233d;
+    background: white;
     padding: 20px 30px;
-    border-radius: 12px;
+    border-radius: 14px;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
     min-width: 140px;
     text-align: center;
 }
@@ -122,5 +136,5 @@ footer {
     text-align: center;
 
     font-size: 18px;
-    color: #9aa4b2;
+    color: #5a6b7a;
 }
