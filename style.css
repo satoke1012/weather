@@ -9,12 +9,12 @@ body {
     background: linear-gradient(135deg, #e9f2ff, #f7fbff);
     color: #1b2a41;
 
-    /* ★全体3%縮小 */
-    transform: scale(0.97);
+    /* ★全体約13%縮小（0.97 → 0.87） */
+    transform: scale(0.87);
     transform-origin: top left;
 
     /* はみ出し防止 */
-    width: 103%;
+    width: 115%;
     overflow-x: hidden;
 }
 
