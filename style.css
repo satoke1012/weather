@@ -1,133 +1,108 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+
+/* =====================
+   全体
+===================== */
+
+body {
+    margin: 0;
+    font-family: "Arial", "Hiragino Kaku Gothic ProN", sans-serif;
+    background: #0b1220;
+    color: #ffffff;
 }
 
-body{
-    font-family: "Yu Gothic", sans-serif;
-    background:#0f172a;
-    color:#fff;
-    overflow:hidden;
+/* =====================
+   ヘッダー
+===================== */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background: #111a2e;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-.container{
-    display:flex;
-    flex-direction:column;
-    height:100vh;
+#clock {
+    font-size: 26px;
 }
 
-/* header */
-.header{
-    height:90px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 40px;
-    background:#1e293b;
+/* =====================
+   メイン
+===================== */
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 30px;
 }
 
-.location{
-    font-size:2rem;
-    font-weight:bold;
+/* =====================
+   天気
+===================== */
+
+.weather {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 48px;
 }
 
-.logo{
-    height:60px;
+#weatherIcon {
+    font-size: 80px;
 }
 
-/* main */
-.main-area{
-    flex:1;
-    display:flex;
+#weatherText {
+    font-size: 32px;
 }
 
-/* weather */
-.weather-panel{
-    flex:2;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+/* =====================
+   気温
+===================== */
+
+.temp {
+    display: flex;
+    gap: 60px;
+    font-size: 28px;
 }
 
-.weather-icon{
-    font-size:10rem;
+.temp div {
+    text-align: center;
 }
 
-.weather-text{
-    font-size:3rem;
-    margin:20px 0;
+#maxTemp,
+#minTemp {
+    font-size: 42px;
+    font-weight: bold;
 }
 
-.temperature{
-    display:flex;
-    gap:40px;
+/* =====================
+   降水
+===================== */
+
+.rain {
+    display: flex;
+    gap: 40px;
+    font-size: 28px;
 }
 
-.temp-box{
-    background:#1e293b;
-    padding:20px;
-    border-radius:15px;
-    width:200px;
-    text-align:center;
+.rain div {
+    background: #16233d;
+    padding: 15px 25px;
+    border-radius: 10px;
 }
 
-.label{
-    font-size:1.2rem;
-}
+/* =====================
+   フッター
+===================== */
 
-.value{
-    font-size:3rem;
-    font-weight:bold;
-}
-
-/* side */
-.side-panel{
-    width:420px;
-    background:#111827;
-    display:flex;
-    flex-direction:column;
-}
-
-.clock-panel{
-    padding:30px;
-    text-align:center;
-}
-
-#date{
-    font-size:1.8rem;
-}
-
-#clock{
-    font-size:3.5rem;
-    font-weight:bold;
-}
-
-.rain-panel{
-    padding:20px;
-}
-
-.rain-panel h2{
-    text-align:center;
-    margin-bottom:20px;
-}
-
-.rain-card{
-    display:flex;
-    justify-content:space-between;
-    padding:15px;
-    margin-bottom:10px;
-    background:#1e293b;
-    border-radius:10px;
-    font-size:1.5rem;
-}
-
-/* footer */
-footer{
-    height:50px;
-    background:#1e293b;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    color: #9aa4b2;
 }
