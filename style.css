@@ -1,269 +1,133 @@
-/* ===========================================
-   太田市 天気サイネージ Ver.4
-=========================================== */
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,
 body{
-
-    width:100%;
-    height:100%;
-
-    font-family:
-        "Yu Gothic UI",
-        "Meiryo",
-        sans-serif;
-
+    font-family: "Yu Gothic", sans-serif;
     background:#0f172a;
-    color:white;
-
+    color:#fff;
     overflow:hidden;
-
 }
 
 .container{
-
     display:flex;
     flex-direction:column;
-
-    width:100%;
-    height:100%;
-
+    height:100vh;
 }
 
-/* ===========================================
-    Header
-=========================================== */
-
+/* header */
 .header{
-
     height:90px;
-
     display:flex;
-
     justify-content:space-between;
     align-items:center;
-
     padding:0 40px;
-
     background:#1e293b;
-
-    border-bottom:3px solid #334155;
-
 }
 
 .location{
-
     font-size:2rem;
     font-weight:bold;
-
 }
 
 .logo{
-
     height:60px;
-
 }
 
-/* ===========================================
-    Main
-=========================================== */
-
+/* main */
 .main-area{
-
     flex:1;
-
     display:flex;
-
 }
 
-/* ===========================================
-    Weather
-=========================================== */
-
+/* weather */
 .weather-panel{
-
     flex:2;
-
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
     align-items:center;
-
 }
 
 .weather-icon{
-
-    font-size:9rem;
-
-    margin-bottom:20px;
-
+    font-size:10rem;
 }
 
 .weather-text{
-
     font-size:3rem;
-
-    font-weight:bold;
-
-    margin-bottom:40px;
-
+    margin:20px 0;
 }
 
 .temperature{
-
     display:flex;
-
     gap:40px;
-
 }
 
 .temp-box{
-
-    width:220px;
-
     background:#1e293b;
-
-    border-radius:20px;
-
     padding:20px;
-
+    border-radius:15px;
+    width:200px;
     text-align:center;
-
 }
 
 .label{
-
-    font-size:1.3rem;
-
-    margin-bottom:15px;
-
+    font-size:1.2rem;
 }
 
 .value{
-
     font-size:3rem;
-
     font-weight:bold;
-
 }
 
-/* ===========================================
-    Side
-=========================================== */
-
+/* side */
 .side-panel{
-
     width:420px;
-
-    display:flex;
-
-    flex-direction:column;
-
     background:#111827;
-
+    display:flex;
+    flex-direction:column;
 }
-
-/* ===========================================
-    Clock
-=========================================== */
 
 .clock-panel{
-
-    padding:35px;
-
+    padding:30px;
     text-align:center;
-
 }
 
 #date{
-
-    font-size:2rem;
-
-    margin-bottom:15px;
-
+    font-size:1.8rem;
 }
 
 #clock{
-
-    font-size:4rem;
-
+    font-size:3.5rem;
     font-weight:bold;
-
 }
 
-/* ===========================================
-    Rain
-=========================================== */
-
 .rain-panel{
-
-    flex:1;
-
-    padding:30px;
-
+    padding:20px;
 }
 
 .rain-panel h2{
-
     text-align:center;
-
     margin-bottom:20px;
-
-    font-size:2rem;
-
 }
 
 .rain-card{
-
     display:flex;
-
     justify-content:space-between;
-
-    align-items:center;
-
+    padding:15px;
+    margin-bottom:10px;
     background:#1e293b;
-
-    border-radius:15px;
-
-    padding:18px 25px;
-
-    margin-bottom:15px;
-
-    font-size:1.8rem;
-
+    border-radius:10px;
+    font-size:1.5rem;
 }
 
-/* ===========================================
-    Footer
-=========================================== */
-
+/* footer */
 footer{
-
-    height:55px;
-
+    height:50px;
+    background:#1e293b;
     display:flex;
-
     justify-content:center;
     align-items:center;
-
-    background:#1e293b;
-
-    border-top:3px solid #334155;
-
-}
-
-#updateTime{
-
-    font-size:1.1rem;
-
-    color:#cbd5e1;
-
 }
