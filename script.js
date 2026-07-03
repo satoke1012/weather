@@ -1,13 +1,18 @@
 
 /* ================================
-   太田市 天気サイネージ Ver.6 FINAL
-   気象庁API 安定版
+   太田市 天気サイネージ（Open-Meteo版）
+   安定・シンプル・エラー対策済み
 ================================ */
 
-const URL =
-"https://www.jma.go.jp/bosai/forecast/data/forecast/100000.json";
+const LAT = 36.305;
+const LON = 139.378;
 
-const CACHE_KEY = "weather_v6";
+const URL =
+`https://api.open-meteo.com/v1/forecast
+?latitude=${LAT}
+&longitude=${LON}
+&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode
+&timezone=Asia/Tokyo`;
 
 /* ================= DOM ================= */
 
@@ -36,6 +41,8 @@ updateClock();
 
 /* ================= キャッシュ ================= */
 
+const CACHE_KEY = "weather_openmeteo";
+
 function saveCache(data) {
     localStorage.setItem(CACHE_KEY, JSON.stringify({
         time: Date.now(),
@@ -48,39 +55,35 @@ function loadCache() {
     return c ? JSON.parse(c) : null;
 }
 
-/* ================= 安全取得 ================= */
-
-function safe(obj, path, fallback = null) {
-    try {
-        return path.split(".").reduce((o, k) => o[k], obj) ?? fallback;
-    } catch {
-        return fallback;
-    }
-}
-
 /* ================= 天気アイコン ================= */
 
 function getIcon(code) {
-    code = String(code);
-
-    if (["100", "101", "110"].includes(code)) return "☀️";
-    if (["200", "201"].includes(code)) return "☁️";
-    if (["300", "400"].includes(code)) return "🌧️";
-
-    return "🌫️";
+    if (code === 0) return "☀️";
+    if (code <= 3) return "🌤️";
+    if (code <= 48) return "☁️";
+    if (code <= 67) return "🌧️";
+    if (code <= 77) return "🌨️";
+    return "🌩️";
 }
 
-/* ================= データ取得 ================= */
+/* ================= 取得 ================= */
 
 async function fetchWeather() {
-    try {
-        const res = await fetch(URL, { cache: "no-store" });
-        const json = await res.json();
 
-        saveCache(json);
-        render(json);
+    try {
+
+        const res = await fetch(URL);
+        if (!res.ok) throw new Error("HTTP Error");
+
+        const data = await res.json();
+
+        saveCache(data);
+        render(data);
 
     } catch (e) {
+
+        console.log("API失敗、キャッシュ使用");
+
         const cache = loadCache();
 
         if (cache) {
@@ -92,56 +95,32 @@ async function fetchWeather() {
     }
 }
 
-/* ================= 南部検索 ================= */
-
-function findArea(list, keyword) {
-    return list.find(a => a.area?.name?.includes(keyword));
-}
-
 /* ================= 描画 ================= */
 
 function render(data) {
 
-    const series = data?.[0]?.timeSeries;
-    if (!series) return;
+    const daily = data?.daily;
 
-    /* ================= 天気 ================= */
-    const weatherAreas = series[0]?.areas || [];
-    const weather = findArea(weatherAreas, "南部") || weatherAreas[0];
-
-    if (weather) {
-        weatherText.textContent = weather.weathers?.[0] ?? "--";
-        weatherIcon.textContent = getIcon(weather.weatherCodes?.[0]);
+    if (!daily) {
+        weatherText.textContent = "データなし";
+        return;
     }
 
-    /* ================= 降水 ================= */
-    const popAreas = series[1]?.areas || [];
-    const pop = findArea(popAreas, "南部") || popAreas[0];
+    /* 天気 */
+    const code = daily.weathercode?.[0] ?? 0;
+    weatherIcon.textContent = getIcon(code);
+    weatherText.textContent = "今日の天気";
 
-    if (pop) {
-        const p = pop.pops || [];
-        rain0.textContent = (p[0] ?? "--") + "%";
-        rain1.textContent = (p[1] ?? "--") + "%";
-        rain2.textContent = (p[2] ?? "--") + "%";
-    }
+    /* 気温 */
+    maxTemp.textContent = (daily.temperature_2m_max?.[0] ?? "--") + "℃";
+    minTemp.textContent = (daily.temperature_2m_min?.[0] ?? "--") + "℃";
 
-    /* ================= 気温 ================= */
-    const tempAreas = series[2]?.areas || [];
+    /* 降水確率 */
+    rain0.textContent = (daily.precipitation_probability_max?.[0] ?? "--") + "%";
+    rain1.textContent = (daily.precipitation_probability_max?.[1] ?? "--") + "%";
+    rain2.textContent = (daily.precipitation_probability_max?.[2] ?? "--") + "%";
 
-    const temp =
-        findArea(tempAreas, "南部") ||
-        tempAreas.find(t => t.tempsMax?.length > 0) ||
-        tempAreas[0];
-
-    if (temp && temp.tempsMax) {
-        maxTemp.textContent = temp.tempsMax?.[0] ?? "--" + "℃";
-        minTemp.textContent = temp.tempsMin?.[0] ?? "--" + "℃";
-    } else {
-        maxTemp.textContent = "--℃";
-        minTemp.textContent = "--℃";
-    }
-
-    /* ================= 更新時間 ================= */
+    /* 更新時刻 */
     updateTime.textContent =
         "更新：" + new Date().toLocaleTimeString("ja-JP");
 }
